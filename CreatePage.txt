@@ -1,0 +1,98 @@
+Halaman Create Insstruction (New 3rd Party Instruction)
+
+(Segera)
+1. menambahkan data Insstruction baru
+    
+    methode: POST
+    url: /api/new3Party
+    request data: {
+                    instructionType: "string",
+                    linkTo: array,
+                    attentionOf: "string",
+                    invoiceTo: "string",
+                    assignedVendor: "string",
+                    vendorAddress: "string"
+                    vendorQuotationNo: "string",
+                    customer: "string",
+                    NoCustomerPO: "string",
+                    status: "string",
+                    costDetail: {
+                        costItem: [
+                            {
+                                description: "string",
+                                QTY: number,
+                                UOM: "string",
+                                unitPrice: number,
+                                GST(%): number,
+                                currency: "srting",
+                                vatAmount: number,
+                                subTotal: number,
+                                total: number,
+                            }
+                        ],
+                        grand Total:[
+                            {
+                                currency: "srting",
+                                vatAmount: number,
+                                subTotal: number,
+                                total: number,
+                            }
+                        ],
+                        notes: srting,
+                    },
+                }
+    request file: {
+                Attachment: [file],             // array berisi file
+            }
+    
+    response {
+        message: "Create New 3rd Party Instruction success",
+        data: {
+            id: "string"                                  // id data baru yang berhasil dibuat
+        }
+    }
+    
+2. meminta data semua Vendor
+
+    methode: GET  
+    url: /api/vendor
+    
+    respons
+    {
+        data: [
+                {   
+                    id: "string",
+                    assignedVendor: "string",
+                    vendorAddress: "string"
+                }
+        ]
+        page: {
+            size: 10,
+            totalData: 34,
+            totalPages: 4,
+            currrentPage: 1,
+        }
+    }
+   
+3. meminta data semua Customer
+
+    methode: GET  
+    url: /api/vendor
+    
+    respons
+    {
+        data: [
+                {   
+                    id: "string",
+                    customer: "string",
+                }
+        ]
+        page: {
+            size: 10,
+            totalData: 34,
+            totalPages: 4,
+            currrentPage: 1,
+        }
+    }
+
+  

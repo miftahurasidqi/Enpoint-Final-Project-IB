@@ -1,0 +1,53 @@
+
+Halaman Edit Insstruction
+
+(Segera)
+1. Edit data Insstruction By id
+    
+    methode: PATCH
+    url: /api/new3Party/edit:{id}
+    request data: {
+                    linkTo: array,
+                    attentionOf: "string",
+                    invoiceTo: "string",
+                    assignedVendor: "string",
+                    vendorAddress: "string"
+                    vendorQuotationNo: "string",
+                    customer: "string",
+                    NoCustomerPO: "string",
+                    status: "string",
+                    costDetail: {
+                        costItem: [
+                            {
+                                description: "string",
+                                QTY: number,
+                                UOM: "string",
+                                unitPrice: number,
+                                GST(%): number,
+                                currency: "srting",
+                                vatAmount: number,
+                                subTotal: number,
+                                total: number,
+                            }
+                        ],
+                        grand Total:[
+                            {
+                                currency: "srting",
+                                vatAmount: number,
+                                subTotal: number,
+                                total: number,
+                            }
+                        ],
+                        notes: srting,
+                    },
+                }
+    request file: {
+                Attachment: [file],             // array berisi file
+            }
+
+    response {
+        message: "Edit 3rd Party Instruction success",
+    }
+
+
+

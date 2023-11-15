@@ -1,0 +1,395 @@
+Halaman Detail Insstruction (Detail 3rd Party Instruction)
+
+(Segera)
+1. Mendapatkan detail data item By id
+
+    methode: GET
+    url: /api/data3Party/:{id}                  // mengunakan parameter {id}
+
+    response berbeda-beda menyesuaikan status dari instruction tersebut
+
+    A. jika status = "draft" & "inprogres"
+    respons data: {   
+            id: "string",
+            instructionID: "string",
+            instructionType: "string",
+            linkTo: array,
+            attentionOf: "string",
+            invoiceTo: "string",
+            assignedVendor: "string",
+            vendorAddress: "string"
+            vendorQuotationNo: "string",
+            customer: "string",
+            NoCustomerPO: "string",
+            status: "string",            
+            costDetail: {
+                costItem: [
+                    {
+                        description: "string",
+                        QTY: number,
+                        UOM: "string",
+                        unitPrice: number,
+                        GST(%): number,
+                        currency: "srting",
+                        vatAmount: number,
+                        subTotal: number,
+                        total: number,
+                    }
+                ],
+                grandTotal: [
+                    {
+                        currency: "srting",
+                        vatAmount: number,
+                        subTotal: number,
+                        total: number,
+                    }
+                ],
+                Attachment: ["fileName"],                 // array berisi string nama file
+                notes: srting,
+            },
+            activityLog: {
+                activityName: "string",
+                user: "srting",
+                date: "string",
+            }
+    }
+
+    B. jika status = "completed"
+    respons data: {   
+            id: "string",
+            instructionID: "string",
+            instructionType: "string",
+            linkTo: array,
+            attentionOf: "string",
+            invoiceTo: "string",
+            assignedVendor: "string",
+            vendorAddress: "string"
+            vendorQuotationNo: "string",
+            customer: "string",
+            NoCustomerPO: "string",
+            status: "string",          
+            costDetail: {
+                costItem: [
+                    {
+                        description: "string",
+                        QTY: number,
+                        UOM: "string",
+                        unitPrice: number,
+                        GST(%): number,
+                        currency: "srting",
+                        vatAmount: number,
+                        subTotal: number,
+                        total: number,
+                    }
+                ],
+                grandTotal: [
+                    {
+                        currency: "srting",
+                        vatAmount: number,
+                        subTotal: number,
+                        total: number,
+                    }
+                ],
+                Attachment: ["fileName"],                 // array berisi string nama file
+                notes: srting,
+            },
+            vendorInvoice: [
+                {
+                    id: "string"
+                    invoiceNumber: "srting",
+                    invoiceAttachment: "fileName",
+                    suportingDocument: ["fileName"],      // array berisi string nama file
+                }
+            ],
+            forInternalOnly: {
+                intrnalAttachment: ["fileName"],          // array berisi string nama file
+                internalNotes: ["string"],                // array berisi string
+            },
+            activityLog: {
+                activityName: "string",
+                user: "srting",
+                date: "string",
+            }
+    }
+    C. jika status = "canceled"
+    respons data: {   
+            id: "string",
+            instructionID: "string",
+            instructionType: "string",
+            linkTo: array,
+            attentionOf: "string",
+            invoiceTo: "string",
+            assignedVendor: "string",
+            vendorAddress: "string"
+            vendorQuotationNo: "string",
+            customer: "string",
+            NoCustomerPO: "string",
+            status: "string",
+            statusInfo: {
+                    canceledBy: "string",
+                    description: "string",
+                    canceledAttachment: ["fileName"],               // array berisi string nama file
+            },            
+            costDetail: {
+                costItem: [
+                    {
+                        description: "string",
+                        QTY: number,
+                        UOM: "string",
+                        unitPrice: number,
+                        GST(%): number,
+                        currency: "srting",
+                        vatAmount: number,
+                        subTotal: number,
+                        total: number,
+                    }
+                ],
+                grandTotal: [
+                    {
+                        currency: "srting",
+                        vatAmount: number,
+                        subTotal: number,
+                        total: number,
+                    }
+                ],
+                Attachment: ["fileName"],                 // array berisi string nama file
+                notes: srting,
+            },
+            vendorInvoice: [
+                {
+                    id: "string"
+                    invoiceNumber: "srting",
+                    invoiceAttachment: "fileName",
+                    suportingDocument: ["fileName"],      // array berisi string nama file
+                }
+            ],
+            forInternalOnly: {
+                intrnalAttachment: ["fileName"],          // array berisi string nama file
+                internalNotes: ["string"],                // array berisi string
+            },
+            activityLog: {
+                activityName: "string",
+                user: "srting",
+                date: "string",
+            }
+    }
+
+(Segera)
+2. Menghapus data item dengan parameter id
+
+    methode: DELETE
+    url: /api/data3Party/:{id}                  // mengunakan parameter {id}
+    
+    response {
+        message: "Delete 3rd Party Instruction success",
+    }
+
+(Segera)
+3. Canceled 3rd Party Instruction (merubah status menjadi Canceled)
+
+    methode: PATCH
+    url: /api/data3Party/canceled/:{id}                  // mengunakan parameter {id}
+
+    request data: {
+        status: "string",                              // nilai harus "canceled"
+        statusInfo: {
+            canceledBy: "string",
+            description: "string",
+        }
+    }
+    request file:{
+        statusAttachment: [file],             // array berisi file
+    }
+
+    response {
+        message: "Canceled success",
+    }
+
+(Segera)
+4. Menambahkan data Invoice
+
+    methode: POST
+    url: /api/addInvoice/:{id}                      // mengunakan parameter {id} merupakan id dari data 3rd Party Instruction
+    request data: {
+                    invoiceNumber: "srting", 
+            }
+    request file: {
+                invoiceAttachment: file,            
+                suportingDocument: [file],          // array berisi file
+            }
+    
+    response: {
+        message: "add Invoice success",
+        data: [
+                {
+                    id: "string",
+                    invoiceNumber: "srting",
+                    invoiceAttachment: "fileName",
+                    suportingDocument: [fileName],      // array berisi string "fileName" 
+                }
+        ]
+    }
+
+(Segera)
+5. Edit data Invoice By id
+
+    methode: PATCH
+    url: /api/editInvoice/:{id}                     // mengunakan parameter {id} merupakan id dari invoice yg akan di edit
+    request data: {
+                   invoiceNumber: "string", 
+                   deleteFile: [fileName],          // array berisi Nama File yg dihapus
+            }
+    request file: {
+                invoiceAttachment: file,            
+                suportingDocument: [file],          // array berisi file
+            }
+    
+    response: {
+        message: "Edit Invoice success",
+        data: [
+                {
+                    id: "string"
+                    invoiceNumber: "srting",
+                    invoiceAttachment: file,
+                    suportingDocument: [file],      // array berisi file 
+                }
+        ]
+    }
+
+(Segera)
+6. Hapus data Invoice By id
+
+    methode: DELETE
+    url: /api/deleteInvoice/:{id}                      // mengunakan parameter {id} merupakan id dari invoice yg akan di hapus
+    
+    response {
+        message: "Delete Invoice success",
+        data: [
+                {
+                    id: "string"
+                    invoiceNumber: "srting",
+                    invoiceAttachment: file,
+                    suportingDocument: [file],      // array berisi file 
+                }
+        ]
+    }
+
+(Segera)
+7. Completed 3rd Party Instruction (merubah status menjadi completed)
+
+    methode: PATCH
+    url: /api/data3Party/completed/:{id}                  // mengunakan parameter {id}
+
+    request data: {
+        status: "completed",                              // nilai harus "completed"
+    }
+
+8. Upload Attachment forInternalOnly
+
+    methode: POST
+    url: /api/forInternalOnly/attachment/:{id}             // mengunakan parameter {id} merupakan id dari data 3rd Party Instruction
+
+    request file: {
+                internalAttachment: file,  
+            }
+
+    response: {
+        message: "Upload Attachment success",
+        data: [
+                {
+                    id: "string",
+                    internalAttachment: "string",           // berisi nama file
+                }
+        ]
+    }
+
+9. Delete Attachment forInternalOnly By id
+
+    methode: DELETE
+    url: /api/forInternalOnly/attachment/:{id}             // mengunakan parameter {id} merupakan id dari internalAttachment
+
+    response: {
+        message: "Delete Attachment success",
+        data: [
+                {
+                    id: "string",
+                    internalAttachment: "string",           // berisi nama file
+                }
+        ]
+    }
+
+10. Add Notes forInternalOnly
+
+    methode: POST
+    url: /api/forInternalOnly/addNote/:{id}             // mengunakan parameter {id} merupakan id dari data 3rd Party Instruction
+
+    request data: {
+                note: "string",
+                noteBy: "string", 
+            }
+
+    response: {
+        message: "add note success",
+        data: [
+                {
+                    id: "string",
+                    note: "string",
+                    noteBy: "string",
+                    time: "string", 
+                }
+        ]
+    }
+
+11. Edit note forInternalOnly By id
+
+    methode: PATCH
+    url: /api/forInternalOnly/note/:{id}            // mengunakan parameter {id} merupakan id dari internalNotes yang akan di edit
+
+    request data: {
+                note: "string",
+                noteBy: "string",
+            }
+
+    response: {
+        message: "edit note success",
+        data: [
+                {
+                    id: "string",
+                    note: "string",
+                    noteBy: "string",
+                    time: "string", 
+                }
+        ]
+    }
+
+12. Delete note forInternalOnly By id
+
+    methode: DELETE
+    url: /api/forInternalOnly/note/:{id}       // mengunakan parameter {id} merupakan id dari internalNotes yang akan di hapus
+
+    response: {
+        message: "edit note success",
+        data: [
+                {
+                    id: "string",
+                    note: "string",
+                    noteBy: "string",
+                    time: "string", 
+                }
+        ]
+    }
+ 
+13. Download File
+
+    methode: GET
+    url: /api/download
+
+    request data: {
+        fileName: "string",
+    }
+
+    respons => download file
+
+14. Export to PDF
+
+Belum
