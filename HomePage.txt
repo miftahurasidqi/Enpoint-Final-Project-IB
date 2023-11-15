@@ -7,7 +7,7 @@ Mebutuhkan data dari BackEnd dengan Endpoint sebagai berikut:
    mengunakan request query page
 
     methode: GET  
-    url: /api/data3Party/open?page=1
+    url: /api/instructions/open?page=1
     
     respons
     {
@@ -38,7 +38,7 @@ Mebutuhkan data dari BackEnd dengan Endpoint sebagai berikut:
     
 
     methode: GET
-    url: /api/data3Party/completed?page=2
+    url: /api/instructions/completed?page=2
 
     respons
     {
@@ -67,7 +67,7 @@ Mebutuhkan data dari BackEnd dengan Endpoint sebagai berikut:
     mengunakan reuest query keyword dan page 
 
     methode: GET
-    url: /api/data3Party/open/search?keyword=keywordValue&page=1
+    url: /api/instructions/open/search?keyword=keywordValue&page=1
     
     respons
     {
@@ -96,7 +96,7 @@ Mebutuhkan data dari BackEnd dengan Endpoint sebagai berikut:
     mengunakan reuest query keyword dan page 
 
     methode: GET
-    url: /api/data3Party/completed/search?keyword=keywordValue&page=1
+    url: /api/instructions/completed/search?keyword=keywordValue&page=1
 
     respons
     {

@@ -4,7 +4,7 @@ Halaman Create Insstruction (New 3rd Party Instruction)
 1. menambahkan data Insstruction baru
     
     methode: POST
-    url: /api/new3Party
+    url: /api/newInstructions
     request data: {
                     instructionType: "string",
                     linkTo: array,
@@ -77,7 +77,7 @@ Halaman Create Insstruction (New 3rd Party Instruction)
 3. meminta data semua Customer
 
     methode: GET  
-    url: /api/vendor
+    url: /api/customer
     
     respons
     {
